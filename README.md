@@ -15,7 +15,7 @@ git clone https://github.com/qazsero/reactnd-project-myreads  my-reads
 cd my-reads
 ```
 
-Tras descargar una copia del proyecto es necesario instalar los paquetes de los que dependencies. Es necesario tener npm instalado en el destino.
+Tras descargar una copia del proyecto es necesario instalar los paquetes de los que depende. Es necesario tener npm instalado en el destino.
 
 ```shell
 npm install
@@ -23,7 +23,7 @@ npm install
 
 ## Uso
 
-Tras la instalación, se inserta la siguiente linea de comando en la terminal
+Tras la instalación, se inserta la siguiente línea de comando en la terminal
 
 ```shell
 npm start

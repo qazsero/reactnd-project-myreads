@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 class Book extends Component {
 
@@ -9,7 +9,6 @@ class Book extends Component {
 
 
   render(){
-
 
     //esta variable elige la opcion del estado del libro
     let bookshelf = 'none';

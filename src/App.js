@@ -18,14 +18,21 @@ class BooksApp extends React.Component {
   getBooks = () => {
     BooksAPI.getAll().then((books) => {
       this.setState({books:books})
-      //books.map(book => (console.log(book)))
     })
   }
 
   updateShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then((books) => {
-      this.getBooks()
+    BooksAPI.update(book, shelf).then(() => {
+      //If I rebuild the array updating the book, I save an API call (Thanks to my first reviewer)
+      this.setState((state) => ({
+        books: state.books.map((b) => (this.updateBookShelfState(b, book, shelf)))
+      }))
     })
+  }
+
+  updateBookShelfState = (b, book, shelf) => {
+    if(b.id === book.id) b.shelf = shelf
+    return b
   }
 
   searchBooks = query => {
@@ -37,12 +44,24 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route exact path="/" render={() => (<BookShelf books={this.state.books} updateShelf={this.updateShelf} />)} />
-        <Route exact path="/search" render={() => (<SearchBooks
-                                                      searchAction={this.searchBooks}
-                                                      searchResults={this.state.searchResults}
-                                                      books={this.state.books} />)}
-                                                      updateShelf={this.updateShelf} />
+        <Route exact path="/" render={
+          () => (
+            <BookShelf
+              books={this.state.books}
+              updateShelf={this.updateShelf}
+            />
+          )}
+        />
+        <Route exact path="/search" render={
+          () => (
+            <SearchBooks
+              searchAction={this.searchBooks}
+              searchResults={this.state.searchResults}
+              books={this.state.books}
+              updateShelf={this.updateShelf}
+            />
+          )}
+        />
       </div>
     )
   }

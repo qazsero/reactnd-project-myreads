@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Book from './Book'
 
@@ -30,10 +30,10 @@ class SearchBooks extends Component {
   render(){
 
 
-    {/*
+    /*
         The search results don't know about my personal library, I have to give
         my personal shelf for each book to the search results.
-    */}
+    */
     let searchLibraryResults
     if(Array.isArray(this.props.searchResults) ) {
       searchLibraryResults = this.props.searchResults.map((se) => (this.updateShelterToSearchResult(se)))
